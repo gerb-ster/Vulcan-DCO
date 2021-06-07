@@ -115,6 +115,20 @@ time = 1 / frequency
 Vin = -(C * R * Vout) / time
 ```
 
+However... After a lot of testing and doing measurements I found out that this formula works, but it kind of 
+starts failing for the lower frequencies. Below 300Hz you will need a higher input voltage to get a consistent
+output voltage. To make it easier for myself I've picked an 10Vpp instead of 12Vpp for my measurements. I've
+plotted these numbers on a graph and it turned out pretty linear so when i used the formula which came out
+this graph, the low end output voltage are much more consistent.
+
+I'm not a mathematician so why or how this formula works, i don't know :-)
+
+```
+Vin = (0.697151065 * frequency) + 40.82
+```
+
+![alt text](./images/HztoMv-Graph.png "Hz to mV Graph")
+
 
 ### Lookup Tables
 
@@ -151,6 +165,7 @@ Also, for the Sine Wave there are 2 trimmers.
 ## Links
 
 <https://blog.thea.codes/the-design-of-the-juno-dco/>  
+<https://www.geogebra.org/graphing/mfdyqrfj>  
 <https://www.bristolwatch.com/ccs/TL431A.htm>  
 <https://github.com/JChristensen/tinySPI>  
 <https://github.com/MetreIdeas/ATtinyx4A_ADC_Example>  

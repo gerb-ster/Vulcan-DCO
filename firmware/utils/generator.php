@@ -63,7 +63,7 @@ foreach($frequencyMap as $frequencyMapValue)
 {
     $time = 1 / $frequencyMapValue;
     //$vInCompensated = round(((-(0.000000001 * 200000 * -10) / $time) / 3) / $voltsPerDACStep);
-    $vInCompensated = round(((0.697151065 * $frequencyMapValue) + 43) / $milliVoltsPerDACStep);
+    $vInCompensated = round(((0.697151065 * $frequencyMapValue) + 40.82) / $milliVoltsPerDACStep);
 
     // max out at 4096
     $dacValues[] = $vInCompensated < 4096 ? $vInCompensated : 4095;
