@@ -1,5 +1,13 @@
 # Vulcan DCO
 
+## Status: Work in Progress
+
+- done: draw first schematic
+- done: breadboard and test
+- todo: board design
+- todo: design frontpanel
+- todo: order PCB and build prototype
+
 ## Theory
 
 This DCO module is based on an article written by Alethea Flowers about the Roland Juno series. 
