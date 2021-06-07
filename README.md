@@ -115,7 +115,9 @@ time = 1 / frequency
 Vin = -(C * R * Vout) / time
 ```
 
-However... After a lot of testing and doing measurements I found out that this formula works, but it kind of 
+#### However... 
+
+After a lot of testing and doing measurements I found out that this formula works, but it kind of 
 starts failing for the lower frequencies. Below 300Hz you will need a higher input voltage to get a consistent
 output voltage. To make it easier for myself I've picked an 10Vpp instead of 12Vpp for my measurements. I've
 plotted these numbers on a graph and it turned out pretty linear so when i used the formula which came out
@@ -160,7 +162,6 @@ There are 2 trimmerpots that need to be set, in order to calibrate the Ramp Gene
 CV_OFFSET => -1.5v  
 VREF_SET => 4.00v  
 
-Also, for the Sine Wave there are 2 trimmers.
 
 ## Links
 
