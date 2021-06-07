@@ -13,7 +13,7 @@
 This DCO module is based on an article written by Alethea Flowers about the Roland Juno series. 
 The idea behind this specific DCO is that a (analog) ramp generator is being controlled by 
 a (digital) microcontroller. A clock signal comming from the micro controller will control the 
-frequency of ramp generator. The nature of this perticular circuit is such, that an increase of 
+frequency of the ramp generator. The nature of this perticular circuit is such, that an increase of 
 the frequency means an decrease of the output amplitude of the generated waveform. To counter 
 this effect, a DAC is used to compensate the input voltage. If you want more in-depth information
 about this, I would highly recommend you read the above mentioned article. A link is provided below.
