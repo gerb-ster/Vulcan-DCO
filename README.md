@@ -150,9 +150,9 @@ code. I've choosen to use PHP for this, because this is my 'native' language :-)
 The Square and Sub-Square outputs are derived directly from the Clock signal using various op-amps and a 
 CD4013 Dual Flip-Flop IC. This schematic is taken from a design for the 'making music with a 566' by
 Thomas Henry. Next, the Saw Wave coming out of the Ramp generator is used to shape it into a Triangle wave.
-This Triangle wave is then used to generate a Pulse wave and a Sine wave. There is a CV input and pot to 
-control the Pulse Width Modulation. For these wave shapers I've used designs from Thomas Henry 
-Ray Wilson and Yves Usson (YUSynth). Links are found below.
+This Triangle wave is then used to generate a Sine wave. The Saw wave is also used to create a Pulse wave.
+There is a CV input and pot to control the Pulse Width Modulation. For these wave shapers I've used 
+designs from Thomas Henry, Ray Wilson and Yves Usson (YUSynth). Links are found below.
 
 
 ## Calibration
