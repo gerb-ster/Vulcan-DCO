@@ -1,144 +1,163 @@
 #include <avr/io.h>
-#include <util/delay.h>
 #include <avr/interrupt.h>
+#include <avr/pgmspace.h>
+
+// The TinySPI lib is used to communicate with the DAC
 #include <tinySPI.h>  
 
-// define some pins
-#define CLOCK_OUT_PIN PB2
+// The frequency lookup table. For every value coming
+// from the ADC (1024 in total), there is a corresponding 
+// value to set the Frequency of the PWM using the ocr_step_value.
+// These values are precalculated to improve speed.
+#include <clock_frq_lookup.h>
+
+// The DAC lookup table. For every value coming
+// from the ADC (1024 in total), there is a corresponding 
+// value to set the DAC to generate the Input Voltage.
+// These values are precalculated to improve speed.
+#include <dac_voltage_lookup.h>
+
+// define the SPI latch pin
 #define SPI_LATCH PA3
 
 // function declarations
-void setPWMFrequency(unsigned int frequency);
-void setDACVoltage(int value);
+void setDACVoltage(uint16_t value);
 uint16_t getADCSample(void);
+
+// declare variable for ocr_step_value
+// 45455 is just a default value
+volatile uint16_t ocr_step_value = 5252; // 238hz
+
+// declare variable for the unput_voltage read by the ADC
+volatile uint16_t input_voltage = 0;
+volatile uint16_t current_input_voltage = 0;
 
 int main(void)
 {
     /*
-     * Pin configuration
-     */
-    DDRB |= (1 << CLOCK_OUT_PIN);
-    DDRA |= (1 << SPI_LATCH);
-    
-    // Disable digital input on ADC0 pin. Not strictly required
-	// but reduces power consumption a bit.
-	DIDR0 = 0x01;
-
-    /*
      * DAC Config
      */
+
+    // set pin config
+    DDRA |= (1 << SPI_LATCH);
+
+    // start SPI library
     SPI.begin(); 
 
     // SPI_LATCH goes high 
     PORTA |= (1 << SPI_LATCH); 
-    
+
     /*
-     * ADC Config
-     *
-     * Enable ADC with 10bit resolution
+     * Timer1 Config
      */
-	ADCSRA = (1 << ADEN) | (1 << ADPS2) | (0 << ADPS1) | (1 << ADPS0);
-    
-    /*
-     * Timer0 Config
-     */
+
+    // set pin to pwm output mode 
+    DDRA |= (1 << DDA6); 
+
+    // clear Timer1 Registers
     TCCR1A = 0;
     TCCR1B = 0;
-    //TCNT1 = 0;
 
-    // CTC
-    TCCR1B |= (1 << WGM12);
-    // Prescaler 1
-    TCCR1B |= (0 << CS12) | (1 << CS11) | (0 << CS10);
+    // enable 'Compare Match Toggle' on OC1A
+    TCCR1A |= (1 << COM1A0);
+
+    // set Prescaler to /8
+    TCCR1B |= (1 << CS11)| (0 << CS10);
+
     // Output Compare Match A Interrupt Enable
     TIMSK1 |= (1 << OCIE1A);
     
-    // set the Clock Frequency
-    setPWMFrequency(880);
+    /*
+     * ADC Config
+     */
 
-    // enable global interrupts
-    sei();
+    // Set ADC prescaler to 128 - 125KHz sample rate @ 16MHz
+    ADCSRA |= (1 << ADPS2) | (1 << ADPS1) | (1 << ADPS0);
+  
+    // set ADC1 as the input channel and enable external voltage reference (4.0V)
+    ADMUX |= (1 << MUX0) | (1 << REFS0);
 
-    // declare inputVoltage
-    uint16_t inputVoltage = 0;
-    uint16_t currentInputVoltage = 0;
-
-    // the main loop
-    while(1)
-    {
-        // read voltage input
-        inputVoltage = getADCSample();
+    // Set ADC to Free-Running Mode
+    ADCSRA |= (1 << ADATE);  
     
-        // only set the dac when something changed
-        if(inputVoltage != currentInputVoltage)
-        {
-            // set the DAC
-            setDACVoltage(inputVoltage * 4);
+    // Enable ADC
+    ADCSRA |= (1 << ADEN);
 
-            // store the new into the current
-            currentInputVoltage =  inputVoltage;
-        }            
-    }
-}
+    // Enable ADC Interrupt
+    ADCSRA |= (1 << ADIE);  
 
-/*
- * setPWMFrequency
- */
-void setPWMFrequency(unsigned int frequency)
-{
-    //int tValue = (F_CPU / 8 / (value * 2));
-    int ocr = (F_CPU / frequency / 2 / 8) - 2;
+    // Enable Global Interrupts
+    sei(); 
 
-    OCR1A = ocr;
+    // Start A2D Conversions    
+    ADCSRA |= (1 << ADSC);  
+
+    //setDACVoltage(80);
+
+    // Loop Forever
+    for(;;)  
+	{
+	}  
 }
 
 /*
  * setDACVoltage
  */
-void setDACVoltage(int value)
+void setDACVoltage(uint16_t value)
 {
     // Set the config bits
-    uint8_t configBits = 0 << 3 | 0 << 2 | 1 << 1 | 1;
+    uint8_t config_bits = 0 << 3 | 0 << 2 | 1 << 1 | 1;
 
     // Compose the first byte to send to the DAC:
     // the 4 control bits, and the 4 most significant bits of the value
-    uint8_t firstByte = configBits << 4 | (value & 0xF00) >> 8;
+    uint8_t first_byte = config_bits << 4 | (value & 0xF00) >> 8;
 
     // Second byte is the lower 8 bits of the value
-    uint8_t secondByte = value & 0xFF;
+    uint8_t second_byte = value & 0xFF;
 
     // SPI_LATCH goes low
     PORTA &= ~(1 << SPI_LATCH); 
 
-    SPI.transfer(firstByte);
-    SPI.transfer(secondByte); 
+    SPI.transfer(first_byte);
+    SPI.transfer(second_byte); 
 
     // SPI_LATCH goes high 
     PORTA |= (1 << SPI_LATCH); 
 }
 
 /*
- * getADCSample
+ * The interrupt handler for the ADC 
  */
-uint16_t getADCSample(void)
+ISR(ADC_vect)
 {
-	// start a conversion by setting the ADSC bit in ADCSRA
-	ADCSRA |= (1 << ADSC); 
-	
-    // wait for the conversion to complete
-	while (ADCSRA & (1 << ADSC)) ;              
-
     // get the sample value from ADCL
     uint8_t adc_lobyte = ADCL;
 
-    // add lobyte and hibyte   
-    uint16_t raw_adc = ADCH << 8 | adc_lobyte; 
+    // add lobyte and hibyte to combine new input_voltage
+    input_voltage = ADCH << 8 | adc_lobyte;
 
-	// return the ADC value
-	return(raw_adc);
+    if(input_voltage != current_input_voltage)
+    {
+        // set the Freqency
+        // use pgm_read_word_near to get the value from flash memory
+        ocr_step_value = pgm_read_word_near(frq_lookup + input_voltage);       
+
+        // set the DAC
+        // use pgm_read_word_near to get the value from flash memory
+        setDACVoltage(pgm_read_word_near(dac_lookup + input_voltage));
+
+        // store the new into the current
+        current_input_voltage = input_voltage;
+    }
 }
 
-ISR(TIM1_COMPA_vect) {
-    // toggle the PWM output port
-    PORTB ^= _BV(CLOCK_OUT_PIN); 
+/*
+ * The interrupt handler for Timer1 
+ */
+ISR(TIM1_COMPA_vect) 
+{
+    // By continually adding a value to the OCR1A value we can
+    // create a PWM signal with a variable Frequency which is
+    // not bound by the prescaler and has a 50% duty cycle.
+    OCR1A = OCR1A + ocr_step_value;
 }
