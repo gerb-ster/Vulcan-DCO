@@ -4,7 +4,7 @@
 
 - done: draw first schematic
 - done: breadboard and test
-- todo: board design
+- done: board design
 - todo: design frontpanel
 - todo: order PCB and build prototype
 

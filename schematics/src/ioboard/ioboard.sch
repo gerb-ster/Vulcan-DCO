@@ -5247,11 +5247,11 @@ DIN A3, landscape with location and doc. field</description>
 <part name="PWM_ATTN" library="TomW" deviceset="ALPHA-9MM" device="A" value="100k lin"/>
 <part name="GND11" library="supply1" deviceset="GND" device=""/>
 <part name="R1" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-US_" device="0207/7" package3d_urn="urn:adsk.eagle:package:23493/2" value="100k"/>
-<part name="IO_CON2" library="pinhead" library_urn="urn:adsk.eagle:library:325" deviceset="PINHD-1X4" device="" package3d_urn="urn:adsk.eagle:package:22407/2"/>
-<part name="IO_CON1" library="pinhead" library_urn="urn:adsk.eagle:library:325" deviceset="PINHD-1X4" device="" package3d_urn="urn:adsk.eagle:package:22407/2"/>
 <part name="R2" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-US_" device="0207/7" package3d_urn="urn:adsk.eagle:package:23493/2" value="12k"/>
 <part name="R3" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-US_" device="0207/7" package3d_urn="urn:adsk.eagle:package:23493/2" value="12k"/>
 <part name="R11" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-US_" device="0207/7" package3d_urn="urn:adsk.eagle:package:23493/2" value="1k"/>
+<part name="IO_CON2" library="pinhead" library_urn="urn:adsk.eagle:library:325" deviceset="PINHD-1X4" device="" package3d_urn="urn:adsk.eagle:package:22407/2"/>
+<part name="IO_CON1" library="pinhead" library_urn="urn:adsk.eagle:library:325" deviceset="PINHD-1X4" device="" package3d_urn="urn:adsk.eagle:package:22407/2"/>
 </parts>
 <sheets>
 <sheet>
@@ -5424,14 +5424,6 @@ DIN A3, landscape with location and doc. field</description>
 <attribute name="NAME" x="123.19" y="80.2386" size="1.778" layer="95"/>
 <attribute name="VALUE" x="123.19" y="75.438" size="1.778" layer="96"/>
 </instance>
-<instance part="IO_CON2" gate="A" x="292.1" y="48.26" smashed="yes">
-<attribute name="NAME" x="285.75" y="56.515" size="1.778" layer="95"/>
-<attribute name="VALUE" x="285.75" y="40.64" size="1.778" layer="96"/>
-</instance>
-<instance part="IO_CON1" gate="A" x="292.1" y="66.04" smashed="yes">
-<attribute name="NAME" x="285.75" y="74.295" size="1.778" layer="95"/>
-<attribute name="VALUE" x="285.75" y="58.42" size="1.778" layer="96"/>
-</instance>
 <instance part="R2" gate="G$1" x="101.6" y="68.58" smashed="yes" rot="R90">
 <attribute name="NAME" x="100.1014" y="64.77" size="1.778" layer="95" rot="R90"/>
 <attribute name="VALUE" x="104.902" y="64.77" size="1.778" layer="96" rot="R90"/>
@@ -5443,6 +5435,14 @@ DIN A3, landscape with location and doc. field</description>
 <instance part="R11" gate="G$1" x="261.62" y="142.24" smashed="yes">
 <attribute name="NAME" x="257.81" y="143.7386" size="1.778" layer="95"/>
 <attribute name="VALUE" x="257.81" y="138.938" size="1.778" layer="96"/>
+</instance>
+<instance part="IO_CON2" gate="A" x="281.94" y="48.26" smashed="yes">
+<attribute name="NAME" x="275.59" y="56.515" size="1.778" layer="95"/>
+<attribute name="VALUE" x="275.59" y="40.64" size="1.778" layer="96"/>
+</instance>
+<instance part="IO_CON1" gate="A" x="281.94" y="68.58" smashed="yes">
+<attribute name="NAME" x="275.59" y="76.835" size="1.778" layer="95"/>
+<attribute name="VALUE" x="275.59" y="60.96" size="1.778" layer="96"/>
 </instance>
 </instances>
 <busses>
@@ -5592,9 +5592,9 @@ DIN A3, landscape with location and doc. field</description>
 <junction x="132.08" y="154.94"/>
 </segment>
 <segment>
-<wire x1="289.56" y1="68.58" x2="284.48" y2="68.58" width="0.1524" layer="91"/>
-<label x="284.48" y="68.58" size="1.778" layer="95" rot="R180" xref="yes"/>
-<pinref part="IO_CON1" gate="A" pin="2"/>
+<label x="274.32" y="66.04" size="1.778" layer="95" rot="R180" xref="yes"/>
+<wire x1="279.4" y1="66.04" x2="274.32" y2="66.04" width="0.1524" layer="91"/>
+<pinref part="IO_CON1" gate="A" pin="4"/>
 </segment>
 </net>
 <net name="N$4" class="0">
@@ -5646,9 +5646,9 @@ DIN A3, landscape with location and doc. field</description>
 <label x="251.46" y="223.52" size="1.778" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<wire x1="289.56" y1="63.5" x2="284.48" y2="63.5" width="0.1524" layer="91"/>
-<label x="284.48" y="63.5" size="1.778" layer="95" rot="R180" xref="yes"/>
-<pinref part="IO_CON1" gate="A" pin="4"/>
+<label x="251.46" y="68.58" size="1.778" layer="95" rot="R180" xref="yes"/>
+<wire x1="279.4" y1="68.58" x2="251.46" y2="68.58" width="0.1524" layer="91"/>
+<pinref part="IO_CON1" gate="A" pin="3"/>
 </segment>
 </net>
 <net name="SUB_SQR_OUT" class="0">
@@ -5658,9 +5658,9 @@ DIN A3, landscape with location and doc. field</description>
 <label x="251.46" y="203.2" size="1.778" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<wire x1="289.56" y1="66.04" x2="266.7" y2="66.04" width="0.1524" layer="91"/>
-<label x="266.7" y="66.04" size="1.778" layer="95" rot="R180" xref="yes"/>
-<pinref part="IO_CON1" gate="A" pin="3"/>
+<label x="274.32" y="71.12" size="1.778" layer="95" rot="R180" xref="yes"/>
+<wire x1="279.4" y1="71.12" x2="274.32" y2="71.12" width="0.1524" layer="91"/>
+<pinref part="IO_CON1" gate="A" pin="2"/>
 </segment>
 </net>
 <net name="SAW_OUT" class="0">
@@ -5670,9 +5670,9 @@ DIN A3, landscape with location and doc. field</description>
 <label x="251.46" y="182.88" size="1.778" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<wire x1="289.56" y1="50.8" x2="266.7" y2="50.8" width="0.1524" layer="91"/>
-<label x="266.7" y="50.8" size="1.778" layer="95" rot="R180" xref="yes"/>
-<pinref part="IO_CON2" gate="A" pin="2"/>
+<label x="256.54" y="53.34" size="1.778" layer="95" rot="R180" xref="yes"/>
+<wire x1="279.4" y1="53.34" x2="256.54" y2="53.34" width="0.1524" layer="91"/>
+<pinref part="IO_CON2" gate="A" pin="1"/>
 </segment>
 </net>
 <net name="TRI_OUT" class="0">
@@ -5682,21 +5682,21 @@ DIN A3, landscape with location and doc. field</description>
 <label x="251.46" y="162.56" size="1.778" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<wire x1="289.56" y1="53.34" x2="284.48" y2="53.34" width="0.1524" layer="91"/>
-<label x="284.48" y="53.34" size="1.778" layer="95" rot="R180" xref="yes"/>
-<pinref part="IO_CON2" gate="A" pin="1"/>
+<label x="274.32" y="45.72" size="1.778" layer="95" rot="R180" xref="yes"/>
+<wire x1="279.4" y1="45.72" x2="274.32" y2="45.72" width="0.1524" layer="91"/>
+<pinref part="IO_CON2" gate="A" pin="4"/>
 </segment>
 </net>
 <net name="PULSE_OUT" class="0">
 <segment>
-<pinref part="IO_CON2" gate="A" pin="4"/>
-<wire x1="289.56" y1="45.72" x2="266.7" y2="45.72" width="0.1524" layer="91"/>
-<label x="266.7" y="45.72" size="1.778" layer="95" rot="R180" xref="yes"/>
-</segment>
-<segment>
 <pinref part="R11" gate="G$1" pin="1"/>
 <wire x1="256.54" y1="142.24" x2="251.46" y2="142.24" width="0.1524" layer="91"/>
 <label x="251.46" y="142.24" size="1.778" layer="95" rot="R180" xref="yes"/>
+</segment>
+<segment>
+<label x="256.54" y="48.26" size="1.778" layer="95" rot="R180" xref="yes"/>
+<wire x1="279.4" y1="48.26" x2="256.54" y2="48.26" width="0.1524" layer="91"/>
+<pinref part="IO_CON2" gate="A" pin="3"/>
 </segment>
 </net>
 <net name="SINE_OUT" class="0">
@@ -5706,9 +5706,9 @@ DIN A3, landscape with location and doc. field</description>
 <label x="251.46" y="121.92" size="1.778" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<wire x1="289.56" y1="48.26" x2="284.48" y2="48.26" width="0.1524" layer="91"/>
-<label x="284.48" y="48.26" size="1.778" layer="95" rot="R180" xref="yes"/>
-<pinref part="IO_CON2" gate="A" pin="3"/>
+<label x="274.32" y="50.8" size="1.778" layer="95" rot="R180" xref="yes"/>
+<wire x1="279.4" y1="50.8" x2="274.32" y2="50.8" width="0.1524" layer="91"/>
+<pinref part="IO_CON2" gate="A" pin="2"/>
 </segment>
 </net>
 <net name="N$11" class="0">
@@ -5738,9 +5738,9 @@ DIN A3, landscape with location and doc. field</description>
 <pinref part="R1" gate="G$1" pin="2"/>
 </segment>
 <segment>
+<label x="251.46" y="73.66" size="1.778" layer="95" rot="R180" xref="yes"/>
+<wire x1="279.4" y1="73.66" x2="251.46" y2="73.66" width="0.1524" layer="91"/>
 <pinref part="IO_CON1" gate="A" pin="1"/>
-<wire x1="289.56" y1="71.12" x2="266.7" y2="71.12" width="0.1524" layer="91"/>
-<label x="266.7" y="71.12" size="1.778" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="N$43" class="0">
