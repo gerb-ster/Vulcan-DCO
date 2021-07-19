@@ -19460,8 +19460,8 @@ get a offset of -1.50V @ TP1</text>
 <attribute name="VALUE" x="359.664" y="361.061" size="1.778" layer="96"/>
 </instance>
 <instance part="TRI_SINE_SYM" gate="1" x="347.98" y="383.54" smashed="yes" rot="R270">
-<attribute name="NAME" x="344.17" y="389.509" size="1.778" layer="95"/>
-<attribute name="VALUE" x="344.17" y="387.35" size="1.778" layer="96"/>
+<attribute name="NAME" x="331.47" y="389.509" size="1.778" layer="95"/>
+<attribute name="VALUE" x="331.47" y="387.35" size="1.778" layer="96"/>
 </instance>
 <instance part="P+17" gate="1" x="355.6" y="391.16" smashed="yes">
 <attribute name="VALUE" x="353.06" y="386.08" size="1.778" layer="96" rot="R90"/>
