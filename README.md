@@ -1,12 +1,12 @@
 # Vulcan DCO
 
-## Status: Work in Progress
+## Status: Almost finished
 
 - done: draw first schematic
 - done: breadboard and test
 - done: board design
-- todo: design frontpanel
-- todo: order PCB and build prototype
+- done: design frontpanel
+- done: order PCB and build prototype
 
 ## Theory
 
