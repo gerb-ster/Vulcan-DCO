@@ -1,7 +1,7 @@
 {
     "Header": {
         "Comment": "All values are metric (mm)",
-        "CreationDate": "2021-09-26T19:04:06Z",
+        "CreationDate": "2021-09-26T19:04:01Z",
         "GenerationSoftware": {
             "Application": "EAGLE",
             "Vendor": "Autodesk",
@@ -13,7 +13,7 @@
         "BoardThickness": 1.57,
         "LayerNumber": 2,
         "Name": {
-            "ProjectId": "mainboard"
+            "ProjectId": "ioboard"
         },
         "Owner": "Gerb Sterrenburg <gerb@gerbster.nl>",
         "Size": {
