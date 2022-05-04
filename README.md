@@ -1,12 +1,14 @@
 # Vulcan DCO
 
-## Status: Almost finished
+## Status: (Almost) finished*
 
 - done: draw first schematic
 - done: breadboard and test
 - done: board design
 - done: design frontpanel
 - done: order PCB and build prototype
+
+*) I only need to finish building a proper faceplate; otherwise this project is done.
 
 ## Theory
 
