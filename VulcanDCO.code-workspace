@@ -2,6 +2,14 @@
 	"folders": [
 		{
 			"path": "."
+		},
+		{
+			"name": "MasterClockFirmware",
+			"path": "../../../Documents/PlatformIO/Projects/MasterClockFirmware"
+		},
+		{
+			"name": "firmware",
+			"path": "firmware"
 		}
 	],
 	"settings": {}
